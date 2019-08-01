@@ -130,7 +130,7 @@ func (m *ClientMock) Keys(pattern string) *redis.StringSliceCmd {
 	return m.Called().Get(0).(*redis.StringSliceCmd)
 }
 
-func (m *ClientMock) Migrate(host, port, key string, db int64, timeout time.Duration) *redis.StatusCmd {
+func (m *ClientMock) Migrate(host, port, key string, db int, timeout time.Duration) *redis.StatusCmd {
 	if !m.hasStub("Migrate") {
 		return m.client.Migrate(host, port, key, db, timeout)
 	}
@@ -138,7 +138,7 @@ func (m *ClientMock) Migrate(host, port, key string, db int64, timeout time.Dura
 	return m.Called().Get(0).(*redis.StatusCmd)
 }
 
-func (m *ClientMock) Move(key string, db int64) *redis.BoolCmd {
+func (m *ClientMock) Move(key string, db int) *redis.BoolCmd {
 	if !m.hasStub("Move") {
 		return m.client.Move(key, db)
 	}
